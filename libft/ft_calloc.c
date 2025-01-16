@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sjoukni <sjoukni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/30 10:01:49 by sjoukni           #+#    #+#             */
-/*   Updated: 2025/01/14 15:18:20 by sjoukni          ###   ########.fr       */
+/*   Created: 2024/10/26 10:00:17 by sjoukni           #+#    #+#             */
+/*   Updated: 2025/01/12 17:21:02 by sjoukni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-
-void    sa(t_list **stack_a)
+void	*ft_calloc(size_t count, size_t size)
 {
-    int i;
+	void	*ptr;
 
-    i = 0;
-    ft_swap(&(*stack_a)->num , &(*stack_a)->next->num);
-    ft_printf("sa\n");
-}
-void    sb(t_list **stack_b)
-{
-    ft_swap(&(*stack_b)->num , &(*stack_b)->next->num);
-    ft_printf("sb\n");
-}
-void    ss(t_list **stack_a, t_list **stack_b)
-{
-   sa(stack_a);
-   sb(stack_b);
-   ft_printf("ss\n");
-
+	if (size != 0 && count > __SIZE_MAX__ / size)
+		return (NULL);
+	ptr = malloc(count * size);
+	if (ptr == NULL)
+		return (NULL);
+	ft_bzero(ptr, count * size);
+	return (ptr);
 }

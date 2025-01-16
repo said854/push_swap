@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   check_reverse.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sjoukni <sjoukni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/30 10:01:49 by sjoukni           #+#    #+#             */
-/*   Updated: 2025/01/14 15:18:20 by sjoukni          ###   ########.fr       */
+/*   Created: 2025/01/12 15:38:17 by sjoukni           #+#    #+#             */
+/*   Updated: 2025/01/14 18:37:08 by sjoukni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-
-void    sa(t_list **stack_a)
+int check_reverse(t_list **stack_a, int *sorted_arr, int i, int r)
 {
-    int i;
-
-    i = 0;
-    ft_swap(&(*stack_a)->num , &(*stack_a)->next->num);
-    ft_printf("sa\n");
-}
-void    sb(t_list **stack_b)
-{
-    ft_swap(&(*stack_b)->num , &(*stack_b)->next->num);
-    ft_printf("sb\n");
-}
-void    ss(t_list **stack_a, t_list **stack_b)
-{
-   sa(stack_a);
-   sb(stack_b);
-   ft_printf("ss\n");
-
+    t_list *tmp;
+    int j = 0;
+    int size;
+    
+    size = ft_lstsize(*stack_a);
+    tmp = *stack_a;
+    while (tmp && !(tmp->num >= sorted_arr[i] && tmp->num <= sorted_arr[r + i]))
+    {
+        tmp = tmp->next;
+        j++;
+    }
+    if (j > ft_lstsize(*stack_a) / 2)
+        return 1;
+    return 0;
 }

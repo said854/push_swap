@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sjoukni <sjoukni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/30 10:01:49 by sjoukni           #+#    #+#             */
-/*   Updated: 2025/01/14 15:18:20 by sjoukni          ###   ########.fr       */
+/*   Created: 2024/11/01 18:31:04 by sjoukni           #+#    #+#             */
+/*   Updated: 2025/01/15 15:11:11 by sjoukni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-
-void    sa(t_list **stack_a)
+void	ft_lstclear(t_list **lst, void (del)(void *))
 {
-    int i;
+	t_list	*temp;
 
-    i = 0;
-    ft_swap(&(*stack_a)->num , &(*stack_a)->next->num);
-    ft_printf("sa\n");
-}
-void    sb(t_list **stack_b)
-{
-    ft_swap(&(*stack_b)->num , &(*stack_b)->next->num);
-    ft_printf("sb\n");
-}
-void    ss(t_list **stack_a, t_list **stack_b)
-{
-   sa(stack_a);
-   sb(stack_b);
-   ft_printf("ss\n");
-
+	if (!lst || !(*lst) || !del)
+		return ;
+	while (*lst != NULL)
+	{
+		temp = (*lst)->next;
+		if ((*lst)->num)
+			del(&(*lst)->num);
+		free(*lst);
+		*lst = temp;
+	}
+	*lst = NULL;
 }

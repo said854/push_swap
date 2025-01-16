@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   ft_manage_five.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sjoukni <sjoukni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/30 10:01:49 by sjoukni           #+#    #+#             */
-/*   Updated: 2025/01/14 15:18:20 by sjoukni          ###   ########.fr       */
+/*   Created: 2025/01/12 15:26:29 by sjoukni           #+#    #+#             */
+/*   Updated: 2025/01/14 18:47:47 by sjoukni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-
-void    sa(t_list **stack_a)
+void    ft_manage_five(t_list **stack_a , t_list **stack_b, int size)
 {
-    int i;
-
-    i = 0;
-    ft_swap(&(*stack_a)->num , &(*stack_a)->next->num);
-    ft_printf("sa\n");
-}
-void    sb(t_list **stack_b)
-{
-    ft_swap(&(*stack_b)->num , &(*stack_b)->next->num);
-    ft_printf("sb\n");
-}
-void    ss(t_list **stack_a, t_list **stack_b)
-{
-   sa(stack_a);
-   sb(stack_b);
-   ft_printf("ss\n");
-
+   int i ;
+   int min ;
+   int j;
+   j = 0;
+    while (j < size - 3)
+    {
+        min = get_min(stack_a);
+        i = get_index(stack_a, min);
+        rotate_to_top(stack_a, i);
+        pb(stack_a, stack_b);
+        j++;
+    }
+    ft_manage_tree(stack_a);
+    pa(stack_a , stack_b);
+    pa(stack_a , stack_b); 
 }

@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   rotate_to_top.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sjoukni <sjoukni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/30 10:01:49 by sjoukni           #+#    #+#             */
-/*   Updated: 2025/01/14 15:18:20 by sjoukni          ###   ########.fr       */
+/*   Created: 2025/01/12 15:30:55 by sjoukni           #+#    #+#             */
+/*   Updated: 2025/01/14 16:07:53 by sjoukni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-
-void    sa(t_list **stack_a)
+void rotate_to_top(t_list **stack, int index) 
 {
-    int i;
-
-    i = 0;
-    ft_swap(&(*stack_a)->num , &(*stack_a)->next->num);
-    ft_printf("sa\n");
-}
-void    sb(t_list **stack_b)
-{
-    ft_swap(&(*stack_b)->num , &(*stack_b)->next->num);
-    ft_printf("sb\n");
-}
-void    ss(t_list **stack_a, t_list **stack_b)
-{
-   sa(stack_a);
-   sb(stack_b);
-   ft_printf("ss\n");
-
+    int size = ft_lstsize(*stack);
+    if (index <= size / 2) 
+    {
+        while (index-- > 0)
+            rb(stack);
+    } else
+    {
+        index = size - index;
+        while (index-- > 0)
+            rrb(stack);
+    }
 }
